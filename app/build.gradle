@@ -1,4 +1,19 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'me.tatarka:gradle-retrolambda:3.6.1'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion 25
@@ -17,6 +32,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+}
+
+ext {
+    support_version = '25.3.1'
+    moxy_version = '1.5.3'
+    butterknife_version = '8.6.0'
+    gson_version = '2.8.1'
+    retrofit_version = '2.3.0'
 }
 
 dependencies {
@@ -25,5 +52,21 @@ dependencies {
     })
     testCompile 'junit:junit:4.12'
 
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    // Support Library
+    compile "com.android.support:appcompat-v7:$support_version"
+
+    // Moxy
+    compile "com.arello-mobile:moxy:$moxy_version"
+    compile "com.arello-mobile:moxy-app-compat:$moxy_version"
+    annotationProcessor "com.arello-mobile:moxy-compiler:$moxy_version"
+
+    // Butter Knife
+    compile "com.jakewharton:butterknife:$butterknife_version"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife_version"
+
+    // Gson
+    compile "com.google.code.gson:gson:$gson_version"
+
+    // Retrofit
+    compile "com.squareup.retrofit2:retrofit:$retrofit_version"
 }
