@@ -2,7 +2,7 @@ package model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Response<T> {
+public class TinkoffResponse<T> {
 
     public static final String RESULT_OK = "OK";
 
