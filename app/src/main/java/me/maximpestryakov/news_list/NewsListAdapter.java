@@ -1,7 +1,6 @@
-package news_list;
+package me.maximpestryakov.news_list;
 
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,14 +12,17 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import me.maximpestryakov.Utils;
+import me.maximpestryakov.model.News;
 import me.maximpestryakov.tinkoffnews.R;
-import model.Title;
 
 class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsTitleViewHolder> {
 
     private final DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.LONG);
 
-    private List<Title> newsTitles;
+    private List<News.Title> newsTitles;
+
+    private OnNewsClickListener onNewsClickListener;
 
     @Override
     public NewsTitleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -42,9 +44,13 @@ class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsTitleView
         return newsTitles.size();
     }
 
-    void setNewsTitles(List<Title> newsTitles) {
+    void setNewsTitles(List<News.Title> newsTitles) {
         this.newsTitles = newsTitles;
         notifyDataSetChanged();
+    }
+
+    void setOnNewsClickListener(OnNewsClickListener onNewsClickListener) {
+        this.onNewsClickListener = onNewsClickListener;
     }
 
     class NewsTitleViewHolder extends RecyclerView.ViewHolder {
@@ -61,9 +67,15 @@ class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsTitleView
         }
 
         void bind(int position) {
-            Title newsTitle = newsTitles.get(position);
-            title.setText(Html.fromHtml(newsTitle.getText()));
+            News.Title newsTitle = newsTitles.get(position);
+            itemView.setOnClickListener(v -> onNewsClickListener.onNewsClick(newsTitle));
+            title.setText(Utils.fromHtml(newsTitle.getText()));
             date.setText(dateFormat.format(new Date(newsTitle.getPublicationDate())));
         }
+    }
+
+    interface OnNewsClickListener {
+
+        void onNewsClick(News.Title newsTitle);
     }
 }

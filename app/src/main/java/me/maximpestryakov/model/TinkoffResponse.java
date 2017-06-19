@@ -1,4 +1,4 @@
-package model;
+package me.maximpestryakov.model;
 
 import com.google.gson.annotations.SerializedName;
 

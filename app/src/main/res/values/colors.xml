@@ -1,7 +1,8 @@
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#F8F8F8</color>
+    <color name="colorPrimaryDark">#BCBDC3</color>
+    <color name="colorAccent">#FF5252</color>
+    <color name="colorActionBarTitle">#564F4F</color>
 
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#757575</color>
