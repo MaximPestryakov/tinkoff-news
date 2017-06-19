@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Tinkoff News</string>
     <string name="title_news_list_activity">Новости</string>
+    <string name="server_is_not_available">Сервер недоступен</string>
+    <string name="no_internet">Нет интернета</string>
+    <string name="unknown_error">Неизвестная ошибка</string>
 </resources>

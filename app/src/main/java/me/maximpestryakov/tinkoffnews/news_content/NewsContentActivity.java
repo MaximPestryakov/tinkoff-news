@@ -3,6 +3,7 @@ package me.maximpestryakov.tinkoffnews.news_content;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -58,5 +59,10 @@ public class NewsContentActivity extends MvpAppCompatActivity implements NewsCon
     @Override
     public void setLoading(boolean loading) {
         progressBar.setVisibility(loading ? View.VISIBLE : View.GONE);
+    }
+
+    @Override
+    public void showError(int messageId) {
+        Snackbar.make(findViewById(android.R.id.content), messageId, Snackbar.LENGTH_LONG).show();
     }
 }

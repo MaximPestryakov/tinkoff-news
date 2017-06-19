@@ -31,12 +31,6 @@ public class News implements Serializable {
         @SerializedName("publicationDate")
         private PublicationDate publicationDate;
 
-        private static class PublicationDate implements Serializable {
-
-            @SerializedName("milliseconds")
-            private Long milliseconds;
-        }
-
         public String getId() {
             return id;
         }
@@ -47,6 +41,12 @@ public class News implements Serializable {
 
         public Long getPublicationDate() {
             return publicationDate.milliseconds;
+        }
+
+        private static class PublicationDate implements Serializable {
+
+            @SerializedName("milliseconds")
+            private Long milliseconds;
         }
     }
 }

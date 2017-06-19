@@ -21,6 +21,7 @@ android {
     defaultConfig {
         applicationId "me.maximpestryakov.tinkoffnews"
         minSdkVersion 19
+        //noinspection OldTargetApi
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -57,6 +58,7 @@ dependencies {
     // Support Library
     compile "com.android.support:appcompat-v7:$support_version"
     compile "com.android.support:recyclerview-v7:$support_version"
+    compile "com.android.support:design:$support_version"
 
     // Moxy
     compile "com.arello-mobile:moxy:$moxy_version"

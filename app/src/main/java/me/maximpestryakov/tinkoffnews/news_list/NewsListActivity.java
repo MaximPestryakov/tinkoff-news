@@ -2,6 +2,7 @@ package me.maximpestryakov.tinkoffnews.news_list;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -60,5 +61,11 @@ public class NewsListActivity extends MvpAppCompatActivity implements NewsListVi
     @Override
     public void setNewsTitles(List<News.Title> newsTitles) {
         adapter.setNewsTitles(newsTitles);
+    }
+
+    @Override
+
+    public void showError(int messageId) {
+        Snackbar.make(findViewById(android.R.id.content), messageId, Snackbar.LENGTH_LONG).show();
     }
 }
