@@ -17,11 +17,13 @@ public class MainPresenter extends MvpPresenter<MainView> {
     }
 
     void update() {
+        getViewState().setRefreshing(true);
         repository.getNewsTitles()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(newsTitles -> {
                     getViewState().setNewsTitles(newsTitles);
+                    getViewState().setRefreshing(false);
                 }, throwable -> {
                 });
     }

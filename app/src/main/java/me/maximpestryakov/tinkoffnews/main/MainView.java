@@ -11,5 +11,7 @@ import model.Title;
 @StateStrategyType(AddToEndSingleStrategy.class)
 interface MainView extends MvpView {
 
+    void setRefreshing(boolean refreshing);
+
     void setNewsTitles(List<Title> newsTitles);
 }

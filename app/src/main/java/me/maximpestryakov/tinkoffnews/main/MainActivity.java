@@ -1,6 +1,7 @@
 package me.maximpestryakov.tinkoffnews.main;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -19,6 +20,9 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
     @InjectPresenter
     MainPresenter presenter;
 
+    @BindView(R.id.swipeRefresh)
+    SwipeRefreshLayout swipeRefresh;
+
     @BindView(R.id.newsList)
     RecyclerView newsList;
 
@@ -30,11 +34,18 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        swipeRefresh.setOnRefreshListener(presenter::update);
+
         adapter = new MainAdapter();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 
         newsList.setLayoutManager(layoutManager);
         newsList.setAdapter(adapter);
+    }
+
+    @Override
+    public void setRefreshing(boolean refreshing) {
+        swipeRefresh.setRefreshing(refreshing);
     }
 
     @Override

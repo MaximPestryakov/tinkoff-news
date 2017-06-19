@@ -1,6 +1,5 @@
 package me.maximpestryakov.tinkoffnews.main;
 
-import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -8,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -15,10 +16,9 @@ import butterknife.ButterKnife;
 import me.maximpestryakov.tinkoffnews.R;
 import model.Title;
 
-import static android.text.Html.FROM_HTML_MODE_COMPACT;
-import static android.text.Html.FROM_HTML_MODE_LEGACY;
-
 class MainAdapter extends RecyclerView.Adapter<MainAdapter.NewsTitleViewHolder> {
+
+    private final DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.LONG);
 
     private List<Title> newsTitles;
 
@@ -63,7 +63,7 @@ class MainAdapter extends RecyclerView.Adapter<MainAdapter.NewsTitleViewHolder> 
         void bind(int position) {
             Title newsTitle = newsTitles.get(position);
             title.setText(Html.fromHtml(newsTitle.getText()));
-            date.setText(String.valueOf(newsTitle.getPublicationDate()));
+            date.setText(dateFormat.format(new Date(newsTitle.getPublicationDate())));
         }
     }
 }
