@@ -1,4 +1,4 @@
-package me.maximpestryakov.tinkoffnews.main;
+package news_list;
 
 import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy;
@@ -9,7 +9,7 @@ import java.util.List;
 import model.Title;
 
 @StateStrategyType(AddToEndSingleStrategy.class)
-interface MainView extends MvpView {
+interface NewsListView extends MvpView {
 
     void setRefreshing(boolean refreshing);
 

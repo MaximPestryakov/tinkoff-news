@@ -1,4 +1,4 @@
-package me.maximpestryakov.tinkoffnews.main;
+package news_list;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
@@ -8,11 +8,11 @@ import io.reactivex.schedulers.Schedulers;
 import repository.TinkoffNewsRepository;
 
 @InjectViewState
-public class MainPresenter extends MvpPresenter<MainView> {
+public class NewsListPresenter extends MvpPresenter<NewsListView> {
 
     private final TinkoffNewsRepository repository = new TinkoffNewsRepository();
 
-    MainPresenter() {
+    NewsListPresenter() {
         update();
     }
 

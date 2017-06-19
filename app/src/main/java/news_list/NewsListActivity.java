@@ -1,4 +1,4 @@
-package me.maximpestryakov.tinkoffnews.main;
+package news_list;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -15,10 +15,10 @@ import butterknife.ButterKnife;
 import me.maximpestryakov.tinkoffnews.R;
 import model.Title;
 
-public class MainActivity extends MvpAppCompatActivity implements MainView {
+public class NewsListActivity extends MvpAppCompatActivity implements NewsListView {
 
     @InjectPresenter
-    MainPresenter presenter;
+    NewsListPresenter presenter;
 
     @BindView(R.id.swipeRefresh)
     SwipeRefreshLayout swipeRefresh;
@@ -26,17 +26,18 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
     @BindView(R.id.newsList)
     RecyclerView newsList;
 
-    private MainAdapter adapter;
+    private NewsListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.title_news_list_activity);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
         swipeRefresh.setOnRefreshListener(presenter::update);
 
-        adapter = new MainAdapter();
+        adapter = new NewsListAdapter();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
 
         newsList.setLayoutManager(layoutManager);
