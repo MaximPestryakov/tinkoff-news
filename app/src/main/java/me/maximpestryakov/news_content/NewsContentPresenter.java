@@ -13,10 +13,14 @@ public class NewsContentPresenter extends MvpPresenter<NewsContentView> {
     private final TinkoffNewsRepository repository = new TinkoffNewsRepository();
 
     void loadContent(String id) {
+        getViewState().setLoading(true);
         repository.getNewsContent(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(news -> getViewState().setNews(news), throwable -> {
+                .subscribe(news -> {
+                    getViewState().setNews(news);
+                    getViewState().setLoading(false);
+                }, throwable -> {
                 });
     }
 }

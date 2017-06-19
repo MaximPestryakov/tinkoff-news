@@ -3,6 +3,8 @@ package me.maximpestryakov.news_content;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
@@ -24,6 +26,9 @@ public class NewsContentActivity extends MvpAppCompatActivity implements NewsCon
 
     @InjectPresenter
     NewsContentPresenter presenter;
+
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
 
     @BindView(R.id.title)
     TextView title;
@@ -48,5 +53,10 @@ public class NewsContentActivity extends MvpAppCompatActivity implements NewsCon
     public void setNews(News news) {
         title.setText(Utils.fromHtml(news.getTitle().getText()));
         content.setText(Utils.fromHtml(news.getContent()));
+    }
+
+    @Override
+    public void setLoading(boolean loading) {
+        progressBar.setVisibility(loading ? View.VISIBLE : View.GONE);
     }
 }

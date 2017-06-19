@@ -14,7 +14,12 @@ public final class Utils {
 
     @SuppressWarnings("deprecation")
     public static Spanned fromHtml(String html) {
-        html = html.replaceAll("\\n", "").replaceAll("\\t", "");
+        // removing escape characters
+        html = html.replaceAll("\\n", "")
+                .replaceAll("\\t", "")
+                .replaceAll("\\\\\"", "\"")
+                .replaceAll("\\\\'", "'")
+                .replaceAll("\\\\", "\\");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             return Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY, null, tagCleaner);
