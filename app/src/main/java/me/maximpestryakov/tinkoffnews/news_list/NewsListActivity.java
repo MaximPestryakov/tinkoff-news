@@ -42,8 +42,8 @@ public class NewsListActivity extends MvpAppCompatActivity implements NewsListVi
         swipeRefresh.setOnRefreshListener(presenter::update);
 
         adapter = new NewsListAdapter();
-        adapter.setOnNewsClickListener(newsTitle -> {
-            Intent intent = NewsContentActivity.getStartIntent(this, newsTitle);
+        adapter.setOnNewsClickListener(news -> {
+            Intent intent = NewsContentActivity.getStartIntent(this, news);
             startActivity(intent);
         });
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -59,8 +59,8 @@ public class NewsListActivity extends MvpAppCompatActivity implements NewsListVi
     }
 
     @Override
-    public void setNewsTitles(List<News.Title> newsTitles) {
-        adapter.setNewsTitles(newsTitles);
+    public void setNewsList(List<News> newsList) {
+        adapter.setNewsList(newsList);
     }
 
     @Override

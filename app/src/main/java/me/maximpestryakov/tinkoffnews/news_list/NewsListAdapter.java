@@ -16,36 +16,36 @@ import me.maximpestryakov.tinkoffnews.R;
 import me.maximpestryakov.tinkoffnews.Utils;
 import me.maximpestryakov.tinkoffnews.model.News;
 
-class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsTitleViewHolder> {
+class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsListViewHolder> {
 
     private final DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.LONG);
 
-    private List<News.Title> newsTitles;
+    private List<News> newsList;
 
     private OnNewsClickListener onNewsClickListener;
 
     @Override
-    public NewsTitleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public NewsListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_news_title, parent, false);
-        return new NewsTitleViewHolder(view);
+        return new NewsListViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(NewsTitleViewHolder holder, int position) {
+    public void onBindViewHolder(NewsListViewHolder holder, int position) {
         holder.bind(position);
     }
 
     @Override
     public int getItemCount() {
-        if (newsTitles == null) {
+        if (newsList == null) {
             return 0;
         }
-        return newsTitles.size();
+        return newsList.size();
     }
 
-    void setNewsTitles(List<News.Title> newsTitles) {
-        this.newsTitles = newsTitles;
+    void setNewsList(List<News> newsList) {
+        this.newsList = newsList;
         notifyDataSetChanged();
     }
 
@@ -53,7 +53,7 @@ class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsTitleView
         this.onNewsClickListener = onNewsClickListener;
     }
 
-    class NewsTitleViewHolder extends RecyclerView.ViewHolder {
+    class NewsListViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.title)
         TextView title;
@@ -61,21 +61,21 @@ class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsTitleView
         @BindView(R.id.date)
         TextView date;
 
-        NewsTitleViewHolder(View itemView) {
+        NewsListViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
 
         void bind(int position) {
-            News.Title newsTitle = newsTitles.get(position);
-            itemView.setOnClickListener(v -> onNewsClickListener.onNewsClick(newsTitle));
-            title.setText(Utils.fromHtml(newsTitle.getText()));
-            date.setText(dateFormat.format(new Date(newsTitle.getPublicationDate())));
+            News news = newsList.get(position);
+            itemView.setOnClickListener(v -> onNewsClickListener.onNewsClick(news));
+            title.setText(Utils.fromHtml(news.getTitle()));
+            date.setText(dateFormat.format(new Date(news.getDate())));
         }
     }
 
     interface OnNewsClickListener {
 
-        void onNewsClick(News.Title newsTitle);
+        void onNewsClick(News news);
     }
 }

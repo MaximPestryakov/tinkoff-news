@@ -13,7 +13,7 @@ public interface TinkoffNewsService {
     String URL = " https://api.tinkoff.ru/v1/";
 
     @GET("news")
-    Observable<TinkoffResponse<List<News.Title>>> getNewsTitles();
+    Observable<TinkoffResponse<List<News>>> getNewsList();
 
     @GET("news_content")
     Observable<TinkoffResponse<News>> getNewsContent(@Query("id") String id);

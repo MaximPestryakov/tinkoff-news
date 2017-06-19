@@ -1,52 +1,58 @@
 package me.maximpestryakov.tinkoffnews.model;
 
-import com.google.gson.annotations.SerializedName;
-
 import java.io.Serializable;
 
-public class News implements Serializable {
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
-    @SerializedName("title")
-    private Title title;
+public class News extends RealmObject implements Serializable {
 
-    @SerializedName("content")
+    public static final String ID = "id";
+    public static final String TITLE = "title";
+    public static final String TEXT = "text";
+    public static final String DATE = "date";
+    public static final String PUBLICATION_DATE = "publicationDate";
+    public static final String MILLISECONDS = "milliseconds";
+    public static final String CONTENT = "content";
+
+    @PrimaryKey
+    private String id;
+
+    private String title;
+
+    private long date;
+
     private String content;
 
-    public Title getTitle() {
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
         return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public long getDate() {
+        return date;
+    }
+
+    public void setDate(long date) {
+        this.date = date;
     }
 
     public String getContent() {
         return content;
     }
 
-    public static class Title implements Serializable {
-
-        @SerializedName("id")
-        private String id;
-
-        @SerializedName("text")
-        private String text;
-
-        @SerializedName("publicationDate")
-        private PublicationDate publicationDate;
-
-        public String getId() {
-            return id;
-        }
-
-        public String getText() {
-            return text;
-        }
-
-        public Long getPublicationDate() {
-            return publicationDate.milliseconds;
-        }
-
-        private static class PublicationDate implements Serializable {
-
-            @SerializedName("milliseconds")
-            private Long milliseconds;
-        }
+    public void setContent(String content) {
+        this.content = content;
     }
 }

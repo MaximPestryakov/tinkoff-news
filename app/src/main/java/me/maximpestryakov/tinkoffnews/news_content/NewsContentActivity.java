@@ -19,10 +19,10 @@ import me.maximpestryakov.tinkoffnews.model.News;
 
 public class NewsContentActivity extends MvpAppCompatActivity implements NewsContentView {
 
-    private static final String EXTRA_NEWS_TITLE = "EXTRA_NEWS_TITLE";
+    private static final String EXTRA_NEWS = "EXTRA_NEWS";
 
-    public static Intent getStartIntent(Context context, News.Title newsTitle) {
-        return new Intent(context, NewsContentActivity.class).putExtra(EXTRA_NEWS_TITLE, newsTitle);
+    public static Intent getStartIntent(Context context, News news) {
+        return new Intent(context, NewsContentActivity.class).putExtra(EXTRA_NEWS, news);
     }
 
     @InjectPresenter
@@ -43,16 +43,16 @@ public class NewsContentActivity extends MvpAppCompatActivity implements NewsCon
         setContentView(R.layout.activity_news_content);
         ButterKnife.bind(this);
 
-        News.Title newsTitle = (News.Title) getIntent().getSerializableExtra(EXTRA_NEWS_TITLE);
+        News news = (News) getIntent().getSerializableExtra(EXTRA_NEWS);
 
-        title.setText(Utils.fromHtml(newsTitle.getText()));
+        title.setText(Utils.fromHtml(news.getTitle()));
 
-        presenter.loadContent(newsTitle.getId());
+        presenter.loadContent(news.getId());
     }
 
     @Override
     public void setNews(News news) {
-        title.setText(Utils.fromHtml(news.getTitle().getText()));
+        title.setText(Utils.fromHtml(news.getTitle()));
         content.setText(Utils.fromHtml(news.getContent()));
     }
 

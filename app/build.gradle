@@ -1,19 +1,23 @@
 buildscript {
     repositories {
+        jcenter()
         mavenCentral()
     }
 
-    dependencies {
-        classpath 'me.tatarka:gradle-retrolambda:3.6.1'
+    ext {
+        retrolambda_version = '3.6.1'
+        realm_version = '3.3.2'
     }
-}
 
-repositories {
-    mavenCentral()
+    dependencies {
+        classpath "me.tatarka:gradle-retrolambda:$retrolambda_version"
+        classpath "io.realm:realm-gradle-plugin:$realm_version"
+    }
 }
 
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'realm-android'
 
 android {
     compileSdkVersion 25
@@ -29,8 +33,15 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            debuggable true
+            minifyEnabled false
+            shrinkResources false
         }
     }
     compileOptions {
@@ -47,11 +58,13 @@ ext {
     retrofit_version = '2.3.0'
     rxjava2_version = '2.1.0'
     rxandroid_version = '2.0.1'
+    dagger_version = '2.11'
 }
 
 dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.google.code.findbugs'
     })
     testCompile 'junit:junit:4.12'
 
@@ -82,4 +95,8 @@ dependencies {
 
     // RxAndroid
     compile "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+
+    // Dagger
+    compile "com.google.dagger:dagger-android:$dagger_version"
+    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
 }

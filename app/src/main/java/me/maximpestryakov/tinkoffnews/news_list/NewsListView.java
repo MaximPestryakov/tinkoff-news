@@ -14,7 +14,7 @@ interface NewsListView extends MvpView {
 
     void setRefreshing(boolean refreshing);
 
-    void setNewsTitles(List<News.Title> newsTitles);
+    void setNewsList(List<News> newsList);
 
     @StateStrategyType(OneExecutionStateStrategy.class)
     void showError(int messageId);

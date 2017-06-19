@@ -2,29 +2,29 @@ package me.maximpestryakov.tinkoffnews.repository;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.Observable;
+import io.realm.Realm;
+import me.maximpestryakov.tinkoffnews.App;
 import me.maximpestryakov.tinkoffnews.api.TinkoffNewsService;
 import me.maximpestryakov.tinkoffnews.model.News;
 import me.maximpestryakov.tinkoffnews.model.TinkoffResponse;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TinkoffNewsRepository {
 
-    private TinkoffNewsService service;
+    @Inject
+    TinkoffNewsService service;
+
+    @Inject
+    Realm realm;
 
     public TinkoffNewsRepository() {
-        service = new Retrofit.Builder()
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(TinkoffNewsService.URL)
-                .build()
-                .create(TinkoffNewsService.class);
+        App.getComponent().inject(this);
     }
 
-    public Observable<List<News.Title>> getNewsTitles() {
-        return service.getNewsTitles().map(TinkoffResponse::getPayload);
+    public Observable<List<News>> getNewsList() {
+        return service.getNewsList().map(TinkoffResponse::getPayload);
     }
 
     public Observable<News> getNewsContent(String id) {
