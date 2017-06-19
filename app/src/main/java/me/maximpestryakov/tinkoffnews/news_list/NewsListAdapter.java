@@ -1,4 +1,4 @@
-package me.maximpestryakov.news_list;
+package me.maximpestryakov.tinkoffnews.news_list;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,9 +12,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import me.maximpestryakov.Utils;
-import me.maximpestryakov.model.News;
 import me.maximpestryakov.tinkoffnews.R;
+import me.maximpestryakov.tinkoffnews.Utils;
+import me.maximpestryakov.tinkoffnews.model.News;
 
 class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.NewsTitleViewHolder> {
 

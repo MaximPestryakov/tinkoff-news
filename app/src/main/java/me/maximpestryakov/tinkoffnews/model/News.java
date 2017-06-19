@@ -1,4 +1,4 @@
-package me.maximpestryakov.model;
+package me.maximpestryakov.tinkoffnews.model;
 
 import com.google.gson.annotations.SerializedName;
 

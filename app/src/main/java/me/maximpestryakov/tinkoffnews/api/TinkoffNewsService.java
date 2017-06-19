@@ -1,10 +1,10 @@
-package me.maximpestryakov.api;
+package me.maximpestryakov.tinkoffnews.api;
 
 import java.util.List;
 
 import io.reactivex.Observable;
-import me.maximpestryakov.model.News;
-import me.maximpestryakov.model.TinkoffResponse;
+import me.maximpestryakov.tinkoffnews.model.News;
+import me.maximpestryakov.tinkoffnews.model.TinkoffResponse;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 

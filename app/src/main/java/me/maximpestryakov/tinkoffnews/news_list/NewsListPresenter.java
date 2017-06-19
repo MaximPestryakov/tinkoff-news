@@ -1,11 +1,11 @@
-package me.maximpestryakov.news_list;
+package me.maximpestryakov.tinkoffnews.news_list;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import me.maximpestryakov.repository.TinkoffNewsRepository;
+import me.maximpestryakov.tinkoffnews.repository.TinkoffNewsRepository;
 
 @InjectViewState
 public class NewsListPresenter extends MvpPresenter<NewsListView> {

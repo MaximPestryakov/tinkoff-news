@@ -1,11 +1,11 @@
-package me.maximpestryakov.repository;
+package me.maximpestryakov.tinkoffnews.repository;
 
 import java.util.List;
 
 import io.reactivex.Observable;
-import me.maximpestryakov.api.TinkoffNewsService;
-import me.maximpestryakov.model.News;
-import me.maximpestryakov.model.TinkoffResponse;
+import me.maximpestryakov.tinkoffnews.api.TinkoffNewsService;
+import me.maximpestryakov.tinkoffnews.model.News;
+import me.maximpestryakov.tinkoffnews.model.TinkoffResponse;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;

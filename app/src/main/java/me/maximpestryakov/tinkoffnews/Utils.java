@@ -1,4 +1,4 @@
-package me.maximpestryakov;
+package me.maximpestryakov.tinkoffnews;
 
 import android.os.Build;
 import android.text.Html;

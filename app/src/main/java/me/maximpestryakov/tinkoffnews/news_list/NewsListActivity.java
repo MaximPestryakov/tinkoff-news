@@ -1,4 +1,4 @@
-package me.maximpestryakov.news_list;
+package me.maximpestryakov.tinkoffnews.news_list;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,9 +14,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import me.maximpestryakov.model.News;
-import me.maximpestryakov.news_content.NewsContentActivity;
 import me.maximpestryakov.tinkoffnews.R;
+import me.maximpestryakov.tinkoffnews.model.News;
+import me.maximpestryakov.tinkoffnews.news_content.NewsContentActivity;
 
 public class NewsListActivity extends MvpAppCompatActivity implements NewsListView {
 
