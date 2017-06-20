@@ -24,3 +24,6 @@
 -dontwarn retrofit2.Platform$Java8
 -keepattributes Signature
 -keepattributes Exceptions
+
+# Dagger 2
+-dontwarn com.google.errorprone.annotations.*

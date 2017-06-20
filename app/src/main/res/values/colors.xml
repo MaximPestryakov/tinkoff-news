@@ -1,7 +1,7 @@
 <resources>
     <color name="colorPrimary">#F8F8F8</color>
     <color name="colorPrimaryDark">#BCBDC3</color>
-    <color name="colorAccent">#FF5252</color>
+    <color name="colorAccent">#4A6CE2</color>
     <color name="colorActionBarTitle">#564F4F</color>
 
     <color name="colorPrimaryText">#212121</color>
