@@ -1,11 +1,9 @@
 package me.maximpestryakov.tinkoffnews.model;
 
-import java.io.Serializable;
-
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class News extends RealmObject implements Serializable {
+public class News extends RealmObject {
 
     public static final String ID = "id";
     public static final String TITLE = "title";
@@ -16,13 +14,13 @@ public class News extends RealmObject implements Serializable {
     public static final String CONTENT = "content";
 
     @PrimaryKey
-    private String id;
+    private String id = "";
 
-    private String title;
+    private String title = "";
 
-    private long date;
+    private long date = 0;
 
-    private String content;
+    private String content = "";
 
     public String getId() {
         return id;

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -19,10 +20,10 @@ import me.maximpestryakov.tinkoffnews.model.News;
 
 public class NewsContentActivity extends MvpAppCompatActivity implements NewsContentView {
 
-    private static final String EXTRA_NEWS = "EXTRA_NEWS";
+    private static final String EXTRA_ID = "EXTRA_ID";
 
-    public static Intent getStartIntent(Context context, News news) {
-        return new Intent(context, NewsContentActivity.class).putExtra(EXTRA_NEWS, news);
+    public static Intent getStartIntent(Context context, String id) {
+        return new Intent(context, NewsContentActivity.class).putExtra(EXTRA_ID, id);
     }
 
     @InjectPresenter
@@ -40,14 +41,25 @@ public class NewsContentActivity extends MvpAppCompatActivity implements NewsCon
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("");
         setContentView(R.layout.activity_news_content);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
+        }
         ButterKnife.bind(this);
 
-        News news = (News) getIntent().getSerializableExtra(EXTRA_NEWS);
+        String id = getIntent().getStringExtra(EXTRA_ID);
+        presenter.loadContent(id);
+    }
 
-        title.setText(Utils.fromHtml(news.getTitle()));
-
-        presenter.loadContent(news.getId());
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

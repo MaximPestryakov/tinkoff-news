@@ -43,7 +43,7 @@ public class NewsListActivity extends MvpAppCompatActivity implements NewsListVi
 
         adapter = new NewsListAdapter();
         adapter.setOnNewsClickListener(news -> {
-            Intent intent = NewsContentActivity.getStartIntent(this, news);
+            Intent intent = NewsContentActivity.getStartIntent(this, news.getId());
             startActivity(intent);
         });
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
