@@ -7,11 +7,12 @@ import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
 
 import me.maximpestryakov.tinkoffnews.model.News;
 
-@StateStrategyType(AddToEndSingleStrategy.class)
 interface NewsContentView extends MvpView {
 
+    @StateStrategyType(AddToEndSingleStrategy.class)
     void setNews(News news);
 
+    @StateStrategyType(AddToEndSingleStrategy.class)
     void setLoading(boolean loading);
 
     @StateStrategyType(OneExecutionStateStrategy.class)

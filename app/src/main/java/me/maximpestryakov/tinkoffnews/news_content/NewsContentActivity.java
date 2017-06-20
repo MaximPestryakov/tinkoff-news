@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.arellomobile.mvp.presenter.ProvidePresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,6 +29,12 @@ public class NewsContentActivity extends MvpAppCompatActivity implements NewsCon
 
     @InjectPresenter
     NewsContentPresenter presenter;
+
+    @ProvidePresenter
+    NewsContentPresenter provideNewsContentPresenter() {
+        String id = getIntent().getStringExtra(EXTRA_ID);
+        return new NewsContentPresenter(id);
+    }
 
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
@@ -48,9 +55,6 @@ public class NewsContentActivity extends MvpAppCompatActivity implements NewsCon
             getSupportActionBar().setHomeButtonEnabled(true);
         }
         ButterKnife.bind(this);
-
-        String id = getIntent().getStringExtra(EXTRA_ID);
-        presenter.loadContent(id);
     }
 
     @Override

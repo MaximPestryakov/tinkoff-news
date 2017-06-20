@@ -28,8 +28,9 @@ public class NewsContentPresenter extends MvpPresenter<NewsContentView> {
     @Inject
     CompositeDisposable disposables;
 
-    NewsContentPresenter() {
+    NewsContentPresenter(String id) {
         App.getComponent().inject(this);
+        loadContent(id);
     }
 
     void loadContent(String id) {
