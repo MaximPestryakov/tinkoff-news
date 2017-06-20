@@ -9,6 +9,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import io.reactivex.disposables.CompositeDisposable;
 import io.realm.Realm;
 import me.maximpestryakov.tinkoffnews.App;
 import me.maximpestryakov.tinkoffnews.api.TinkoffNewsService;
@@ -23,6 +24,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class AppModule {
 
     private App app;
+
+    public AppModule(App app) {
+        this.app = app;
+    }
 
     @Singleton
     @Provides
@@ -43,10 +48,6 @@ public class AppModule {
                 .create(TinkoffNewsService.class);
     }
 
-    public AppModule(App app) {
-        this.app = app;
-    }
-
     @Singleton
     @Provides
     TinkoffNewsRepository provideTinkoffNewsRepository() {
@@ -63,5 +64,10 @@ public class AppModule {
     @Provides
     Realm provideRealm() {
         return Realm.getDefaultInstance();
+    }
+
+    @Provides
+    CompositeDisposable provideCompositeDisposable() {
+        return new CompositeDisposable();
     }
 }

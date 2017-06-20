@@ -25,7 +25,8 @@ public class NewsContentPresenter extends MvpPresenter<NewsContentView> {
     @Inject
     Realm realm;
 
-    private final CompositeDisposable disposables = new CompositeDisposable();
+    @Inject
+    CompositeDisposable disposables;
 
     NewsContentPresenter() {
         App.getComponent().inject(this);
